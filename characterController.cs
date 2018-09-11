@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class characterController : MonoBehaviour {
-	public float maxSpeed = 10;
+	public float maxSpeed = 10f;
+	public float jumpHeight = 5f;
 	private Rigidbody2D rb;
 	private trigger cLeft;
 	private trigger cRight;
@@ -25,13 +26,18 @@ public class characterController : MonoBehaviour {
 	}
 
 	void FixedUpdate() {
-		float horizontal = Input.GetAxis("Horizontal"); 
+		float horizontal = Input.GetAxis("Horizontal");
+		bool jump = Input.GetButtonDown("Jump"); 
 		// float vertical = Input.GetAxis("Vertical");
 		if (horizontal < 0 && !cLeft.touching) {
-			rb.velocity = new Vector2(horizontal * 10, rb.velocity.y);
+			rb.velocity = new Vector2(horizontal * maxSpeed, rb.velocity.y);
 		}
 		if (horizontal > 0 && !cRight.touching) {
-			rb.velocity = new Vector2(horizontal * 10, rb.velocity.y);
+			rb.velocity = new Vector2(horizontal * maxSpeed, rb.velocity.y);
 		}
+		if (!cUp.touching && cDown.touching && jump) {
+			rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
+		}
+		
 	}
 }

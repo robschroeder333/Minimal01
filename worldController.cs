@@ -6,7 +6,7 @@ public class worldController : MonoBehaviour {
 public GameObject prefab;
 public float gridX = 5f;
 public float gridY = 5f;
-public float spacing = 1.5f;
+public float spacing = 1.1f;
 
 void Start() {
     for (float y = 0; y < gridY; y++) {

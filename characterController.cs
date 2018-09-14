@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// TODO: not changing target's position (is it necessary to have as child object?)
+// TODO: 
 
 public class characterController : MonoBehaviour {
 	public float maxSpeed = 10f;

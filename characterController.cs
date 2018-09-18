@@ -6,6 +6,7 @@ using UnityEngine;
 // TODO: 
 
 public class characterController : MonoBehaviour {
+	public gameObject bullet;
 	public float maxSpeed = 10f;
 	public float jumpHeight = 5f;
 	private Rigidbody2D rb;
@@ -31,7 +32,8 @@ public class characterController : MonoBehaviour {
 		float horizontal = Input.GetAxis("Horizontal");
 		bool jump = Input.GetButtonDown("Jump"); 
 		float vertical = Input.GetAxis("Vertical");
-
+		bool shoot = Input.GetAxis("Fire1") > 0;
+		bool canShoot = true;
 		//move/aim left
 		if (horizontal < 0 && !cLeft.touching) {
 			rb.velocity = new Vector2(horizontal * maxSpeed, rb.velocity.y);
@@ -52,6 +54,7 @@ public class characterController : MonoBehaviour {
 		if (vertical < 0 && horizontal == 0) {
 			target = Vector2.down;
 		}
+		//remember horizontal target direction
 		if (vertical == 0 && horizontal == 0) {
 			target = targetRecord;
 		}
@@ -59,6 +62,10 @@ public class characterController : MonoBehaviour {
 		if (!cUp.touching && cDown.touching && jump) {
 			rb.velocity = new Vector2(rb.velocity.x, jumpHeight);
 		}
-		
+		//shoot
+		if (shoot) {
+			Instantiate(bullet, gameObject.transform.position + target, Quaternion.identity);
+			//canShoot = false;? give bullet direction for it to move in
+		}
 	}
 }

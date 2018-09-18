@@ -6,7 +6,7 @@ using UnityEngine;
 // TODO: 
 
 public class characterController : MonoBehaviour {
-	public gameObject bullet;
+	public GameObject bullet;
 	public float maxSpeed = 10f;
 	public float jumpHeight = 5f;
 	private Rigidbody2D rb;

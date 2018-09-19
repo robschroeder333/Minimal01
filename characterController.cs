@@ -3,8 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-// TODO: 
-
+TODO: restrict how many bullets are created
 public class characterController : MonoBehaviour {
 	public GameObject bullet;
 	public float maxSpeed = 10f;
@@ -28,12 +27,12 @@ public class characterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
-		Debug.Log(target);
 		float horizontal = Input.GetAxis("Horizontal");
 		bool jump = Input.GetButtonDown("Jump"); 
 		float vertical = Input.GetAxis("Vertical");
 		bool shoot = Input.GetAxis("Fire1") > 0;
 		bool canShoot = true;
+
 		//move/aim left
 		if (horizontal < 0 && !cLeft.touching) {
 			rb.velocity = new Vector2(horizontal * maxSpeed, rb.velocity.y);
@@ -64,8 +63,12 @@ public class characterController : MonoBehaviour {
 		}
 		//shoot
 		if (shoot) {
-			Instantiate(bullet, gameObject.transform.position + target, Quaternion.identity);
-			//canShoot = false;? give bullet direction for it to move in
+			float tempX = gameObject.transform.position.x;
+			float tempY = gameObject.transform.position.y;
+			Vector2 shotPos = new Vector2(tempX + target.x, tempY + target.y);
+			GameObject shot = Instantiate(bullet, shotPos, Quaternion.identity);
+			shot.GetComponent<bullet>().source = gameObject;
+			shot.GetComponent<bullet>().target = target;
 		}
 	}
 }

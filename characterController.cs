@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 
-TODO: restrict how many bullets are created
+//TODO: restrict how many bullets are created
 public class characterController : MonoBehaviour {
 	public GameObject bullet;
 	public float maxSpeed = 10f;

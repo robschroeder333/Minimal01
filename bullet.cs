@@ -12,9 +12,10 @@ public class bullet : MonoBehaviour {
 		gameObject.GetComponent<Rigidbody2D>().velocity = target * speed;
 	}
 	
-	void FixedUpdate () {
-		if (source.name == "character") {
-			//add destroy/collision logic
-		}
+	void OnTriggerEnter2D(Collider2D other) {
+		if (source.name == "character" && other.tag == "Env" || other.tag == "Enemy") {
+			other.GetComponent<healthHandler>().health -= damage;
+			Destroy(gameObject);
+		}	
 	}
 }

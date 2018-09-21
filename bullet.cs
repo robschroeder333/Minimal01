@@ -13,7 +13,7 @@ public class bullet : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter2D(Collider2D other) {
-		if (source.name == "character" && other.tag == "Env" || other.tag == "Enemy") {
+		if (source.name == "character" && other.tag == "Env" || other.tag == "Enemy" || other.tag == "Boundary") {
 			other.GetComponent<healthHandler>().health -= damage;
 			Destroy(gameObject);
 		}	

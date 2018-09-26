@@ -14,6 +14,10 @@ public class trigger : MonoBehaviour {
 	{
 		touching = true;
 	}
+	void OnTriggerStay2D(Collider2D other)
+	{
+		touching = true;
+	}
 	void OnTriggerExit2D(Collider2D other) {
 		touching = false;
 	}

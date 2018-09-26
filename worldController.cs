@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class worldController : MonoBehaviour {
 public GameObject prefab;
-public float gridX = 5f;
-public float gridY = 5f;
+public float gridX = 10f;
+public float gridY = 20f;
 public float spacing = 1.1f;
 
 void Start() {

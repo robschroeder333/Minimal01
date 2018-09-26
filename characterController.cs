@@ -26,6 +26,13 @@ public class characterController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update() {
+		//might have to use onCollision instead of onTrigger
+		if(cDown.touching) {
+			gameObject.GetComponent<Renderer>().material.color = Color.red;
+		} else {
+			gameObject.GetComponent<Renderer>().material.color = Color.green;
+			
+		}
 		float horizontal = Input.GetAxis("Horizontal");
 		bool jump = Input.GetButtonDown("Jump"); 
 		float vertical = Input.GetAxis("Vertical");
@@ -61,21 +68,20 @@ public class characterController : MonoBehaviour {
 		}
 		//shoot
 		if (shoot && canShoot()) {
-			//TODO: debug this conditional
 			if (cDown.touching && target == Vector2.down) {
-				Debug.Log(target);
+				Debug.Log("cannot fire");
 			} else {
-				Fire();
+				Fire(target);
 			}
 		}
 	}
-	void Fire() {
+	void Fire(Vector2 direction) {
 		float tempX = gameObject.transform.position.x;
 		float tempY = gameObject.transform.position.y;
-		Vector2 shotPos = new Vector2(tempX + target.x, tempY + target.y);
+		Vector2 shotPos = new Vector2(tempX + direction.x, tempY + direction.y);
 		GameObject shot = Instantiate(bullet, shotPos, Quaternion.identity);
 		shot.GetComponent<bullet>().source = gameObject;
-		shot.GetComponent<bullet>().target = target;
+		shot.GetComponent<bullet>().target = direction;
 		lastShot = Time.time;
 	}
 	bool canShoot() {

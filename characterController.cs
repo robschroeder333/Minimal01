@@ -1,6 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+/*
+BUGS: collision detection for cDown
+
+TODO:
+
+ */
 public class characterController : MonoBehaviour {
 	public GameObject bullet;
 	public float maxSpeed = 10f;
